@@ -6,7 +6,7 @@ defmodule FuzzRustErlExtTest do
     gen =
       oneof(
         [
-          # FIXME produces invalid utf8 atoms: atom(),
+          atom(),
           binary(),
           bitstring(),
           float(),
@@ -27,6 +27,15 @@ defmodule FuzzRustErlExtTest do
         equals({:ok, x}, result)
       end
     )
+  end
+
+  test "special atom" do
+    special = :"\xC2\x80" # <control>, U+0080
+    port = FuzzRustErlExt.connect
+    FuzzRustErlExt.send(port, special)
+    result = FuzzRustErlExt.recv(port, 1_000)
+    FuzzRustErlExt.disconnect(port)
+    assert {:ok, special} == result
   end
 
   defp map_gen(key_gen, value_gen) do
