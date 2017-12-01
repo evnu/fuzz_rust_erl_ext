@@ -38,7 +38,7 @@ defmodule FuzzRustErlExt do
     recv(port, timeout, <<>>)
   end
 
-  def recv(_, remaining_timeout, _acc) when remaining_timeout < 0 do
+  def recv(_, remaining_timeout, _acc) when remaining_timeout <= 0 do
     :timeout
   end
   def recv(port, remaining_timeout, acc) do
