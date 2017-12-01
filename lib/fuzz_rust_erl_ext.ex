@@ -20,8 +20,8 @@ defmodule FuzzRustErlExt do
   """
   def disconnect(port) do
     Port.close(port)
-  catch
-    _ -> :ok
+  rescue
+    ArgumentError -> :ok
   end
 
   @doc """
