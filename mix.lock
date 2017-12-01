@@ -1,0 +1,2 @@
+%{"propcheck": {:git, "https://github.com/alfert/propcheck.git", "01931ba3d49f4ca5e32091fb4ea08e22977b3907", []},
+  "proper": {:hex, :proper, "1.2.0", "1466492385959412a02871505434e72e92765958c60dba144b43863554b505a4", [], [], "hexpm"}}
